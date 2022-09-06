@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
       #юнит таймера
       echo -en '[Unit]\nDescription=Run watchlog script every 30 second\n\n[Timer]\n# Run every 30 second\nOnUnitActiveSec=30\nUnit=watchlog.service\n\n[Install]\nWantedBy=multi-user.target\n\n' | sudo tee /etc/systemd/system/watchlog.timer
       sudo systemctl start watchlog.timer
+      sudo systemctl start watchlog.service
       #задание 2
       yum install -y epel-release && yum install -y spawn-fcgi php php-cli mod_fcgid httpd
       sudo sed -i 's/#SOCKET=/SOCKET=/;s/#OPTIONS=/OPTIONS=/' /etc/sysconfig/spawn-fcgi
